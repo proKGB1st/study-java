@@ -1,35 +1,62 @@
 /**
- * Класс выведет на экран все простые числа в промежутке от 1 до 1000, каждое на новой строке
+ * Простой арифметический счетчик, который при делении не учитывает остаток от целых делитей
  */
-class Answer 
+class Calculator
 {
-  public void printPrimeNums() 
+  public int calculate(char op, int a, int b)
   {
-    for(int i = 2; i <= 1000; i++) 
+    int result = 0;
+
+    switch (op) 
     {
-        boolean isPrime = true;
+      case '+':
+        result = a+b;
+        break;
+      
+      case '-':
+        result = a-b;
+        break;
 
-        for(int j = 2; j <= Math.sqrt(i); j++) 
-        {
-            if (i % j == 0) 
-            {
-                isPrime = false;
-                break;
-            }
-        }
+      case '*':
+        result = a*b;
+        break;
 
-        if (isPrime) 
-        {
-            System.out.println(i);
-        }
+      case '/':
+        result = a/b;
+        break;
+
+      default:
+        break;
     }
+
+    return result;
   }
 }
 
-public class Printer { 
+public class Printer
+{ 
   public static void main(String[] args) 
   { 
-    Answer ans = new Answer();      
-    ans.printPrimeNums();
+    int a = 0;
+    char op = ' ';
+    int b = 0;
+
+    if (args.length == 0)
+    {
+      a = 3;
+      op = '/';
+      b = 7;
+    } 
+    
+    else 
+    {
+      a = Integer.parseInt(args[0]);
+      op = args[1].charAt(0);
+      b = Integer.parseInt(args[2]);
+    }
+
+    Calculator calculator = new Calculator();
+    int result = calculator.calculate(op, a, b);
+    System.out.println(result);
   }
 }
